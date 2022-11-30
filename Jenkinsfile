@@ -8,6 +8,20 @@ pipeline{
     }
     
 stages {
+        stage('find upstream job') {
+                steps {
+                    script {
+                        def causes = currentBuild.rawBuild.getCauses()
+                        for(cause in causes) {
+                            if (cause.class.toString().contains("UpstreamCause")) {
+                                println "This job was caused by job " + cause.upstreamProject
+                            } else {
+                                println "Root cause : " + cause.toString()
+                            }
+                        }
+                    }      
+                }
+            }
         stage ('Test'){
             when {
                 triggeredBy "BranchEventCause"
