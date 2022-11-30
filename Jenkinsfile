@@ -1,30 +1,24 @@
-pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
+pipeline{
+    agent any
+    environment{
+       Name = "Devsecops_Test"
+       Version = "1.0"
+       App_Language = "Python"
+       Framework = "Django"
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
+    
+stages {
+        stage ('Test'){
+            when {
+                triggeredBy "BranchEventCause"
             }
-        }
-        stage('Test') {
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
+                script{
+                        echo 'test sussess'
+                        }
                 }
-            }
         }
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
-    }
 }
+}
+
+
