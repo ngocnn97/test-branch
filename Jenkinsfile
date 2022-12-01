@@ -19,7 +19,7 @@ stages {
                 }
         }
 
-        stage ('Test'){
+        stage ('Test1'){
             when {
                 branch 'develop'
             }
