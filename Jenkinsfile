@@ -200,11 +200,12 @@ pipeline {
                     sh "docker build . -t ${DOCKER_IMAGE}:${DOCKER_TAG}"
                   }
                 }
+            }
 
                 stage("deploy") {
-                    steps{
-                  cho "Deploy to AWS"
-                  sleep 60
+                  steps{
+                    cho "Deploy to AWS"
+                    sleep 60
               }
                 }
 
