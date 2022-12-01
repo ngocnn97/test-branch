@@ -192,7 +192,7 @@ pipeline {
             }
 
             stages {
-              stage("package") {
+                stage("package") {
                 steps {
                   echo 'sendSlackDeploymentNotification'
 
@@ -202,8 +202,10 @@ pipeline {
                 }
 
                 stage("deploy") {
+                    steps{
                   cho "Deploy to AWS"
                   sleep 60
+              }
                 }
 
                 post {
