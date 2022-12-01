@@ -261,7 +261,7 @@ pipeline {
                 stage('environment input') {
                     steps {
                         script {
-                            configInput = input: [
+                            configInput = [
                                     id: 'image',
                                     message: "Deployment Image & Environment",
                                     parameters: [
