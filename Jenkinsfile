@@ -26,7 +26,7 @@ pipeline {
 
       steps {
         sh 'mvn -B -DskipTests clean package'
-        }
+
       }
     }
 
@@ -42,7 +42,6 @@ pipeline {
 
       steps {
         sh 'mvn test'
-        }
       }
 
       post {
@@ -99,7 +98,8 @@ pipeline {
               sh "echo ${scannerHome}"
               sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectName=${APP_NAME} \
                                     -Dsonar.branch.name=${env.BRANCH_NAME} \
-                                "            }
+                                "
+            }
           }
         }
       }
@@ -253,21 +253,21 @@ pipeline {
           steps {
             script {
               configInput = [
-                  parameters: [
-                    imageTag(
-                      name: 'imageName',
-                      image: "${DOCKER_IMAGE}",
-                      credentialId: "${DOCKER_REGISTRY_CREDENTIALS}",
-                      defaultTag: "uat",
-                      filter: '.*uat.*',
-                      registry: "https://${DOCKER_REGISTRY}"
-                    ),
-                    choice(
-                      name: 'envName',
-                      choices: ['uat', 'prod'],
-                    )
-                  ]
+                parameters: [
+                  imageTag(
+                    name: 'imageName',
+                    image: "${DOCKER_IMAGE}",
+                    credentialId: "${DOCKER_REGISTRY_CREDENTIALS}",
+                    defaultTag: "uat",
+                    filter: '.*uat.*',
+                    registry: "https://${DOCKER_REGISTRY}"
+                  ),
+                  choice(
+                    name: 'envName',
+                    choices: ['uat', 'prod'],
+                  )
                 ]
+              ]
 
               buildName "#${BUILD_NUMBER} - deploy ${configInput.imageName} to ${configInput.envName}"
             }
