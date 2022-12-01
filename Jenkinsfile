@@ -165,7 +165,7 @@ pipeline {
             }
 
             post {
-              echo 'sendSlackDeploymentNotification'
+              sh 'echo "sendSlackDeploymentNotification"'
             }
           }
 
@@ -376,7 +376,7 @@ pipeline {
     }
     }
   }
-  
+
   post {
     always {
       cleanWs()
