@@ -3,6 +3,7 @@ pipeline {
 
   environment {
     DOCKER_IMAGE = "Copy_of_CJ2"
+    APP_NAME = "Java-Test-CJ2"
   }
 
   tools {
@@ -79,7 +80,7 @@ pipeline {
             withSonarQubeEnv('Sonarqube1') {
               sh "ls ${scannerHome}"
               sh "echo ${scannerHome}"
-              sh "${scannerHome}/bin/sonar-scanner"
+              sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${APP_NAME} -Dsonar.projectName=${APP_NAME} -Dsonar.branch.name=${env.BRANCH_NAME}"
             }
           }
         }
@@ -96,7 +97,7 @@ pipeline {
             withSonarQubeEnv('Sonarqube1') {
               sh "ls ${scannerHome}"
               sh "echo ${scannerHome}"
-              sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectName=${APP_NAME} \
+              sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${APP_NAME} -Dsonar.projectName=${APP_NAME} \
                                     -Dsonar.branch.name=${env.BRANCH_NAME} \
                                 "
             }
