@@ -161,8 +161,10 @@ pipeline {
               }
 
               stage("deploy") {
+                steps {
                 echo "Deploy to AWS"
                 sleep 60
+            }
               }
             }
 
