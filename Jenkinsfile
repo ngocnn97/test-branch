@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -57,8 +56,8 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
-
                 }
+            }
         }
 
         stage('analyze') {
@@ -253,9 +252,10 @@ pipeline {
                 beforeAgent true
             }
 
-            environment {
+            // environment {
             DOCKER_REGISTRY = "nexus-docker-msb.df.msb.com.vn"
-            }
+            //     DOCKER_REGISTRY_CREDENTIALS = "rb-cc-svc-nexus"
+            // }
 
             stages {
                 stage('environment input') {
@@ -360,7 +360,6 @@ pipeline {
 
                                 stage('deploy: PROD') {
                                     echo ' deploy AWS'
-                                }
                             }
 
                             post {
