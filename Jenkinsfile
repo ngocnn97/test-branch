@@ -169,7 +169,9 @@ pipeline {
             }
 
             post {
+                always{
               sh 'echo "sendSlackDeploymentNotification"'
+            }
             }
           }
 
@@ -205,7 +207,8 @@ pipeline {
                 }
 
                 post {
-                  echo 'sendSlackDeploymentNotification'
+                    always{
+                  echo 'sendSlackDeploymentNotification'}
                 }
               }
             }
@@ -245,10 +248,11 @@ pipeline {
     }
 
     post {
+        always{
       echo "post result to dependencyTrack"
       sleep 1
 
-      echo 'sendSlackDeploymentNotification'
+      echo 'sendSlackDeploymentNotification'}
     }
     }
 
