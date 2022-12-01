@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -56,9 +57,9 @@ pipeline {
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
+
                 }
-            }
-        }
+}
 
         stage('analyze') {
             when {
@@ -380,4 +381,6 @@ pipeline {
             sh 'docker image prune --all --force --filter "until=24h"'
         }
     }
-}
+
+
+
