@@ -80,7 +80,7 @@ pipeline {
             withSonarQubeEnv('Sonarqube1') {
               sh "ls ${scannerHome}"
               sh "echo ${scannerHome}"
-              sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${APP_NAME} -Dsonar.projectName=${APP_NAME} "
+              sh "${scannerHome}/bin/sonar-scanner -Dsonar.java.binaries=target/classes -Dsonar.projectKey=${APP_NAME} -Dsonar.projectName=${APP_NAME} "
             }
           }
         }
