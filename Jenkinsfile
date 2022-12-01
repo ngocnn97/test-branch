@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_IMAGE = "Copy_of_CJ2"
-    APP_NAME = "Java-Test-CJ2"
+    DOCKER_IMAGE = "copy_of_cj2"
+    APP_NAME = "java-test-cj2"
   }
 
   tools {
