@@ -382,7 +382,6 @@ pipeline {
         }
       }
     }
-    }
   }
 
   post {
