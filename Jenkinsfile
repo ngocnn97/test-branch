@@ -153,8 +153,10 @@ pipeline {
                 }
 
                 post {
+                    always{
                   sh 'echo "post result to dependencyTrack"'
                   sleep 1
+                }
                 }
               }
 
